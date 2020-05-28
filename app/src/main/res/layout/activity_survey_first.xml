@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".SurveyFirst">
+
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/datinginpark" />
+
+
+
+
+    <RadioGroup
+        android:id="@+id/G1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/r1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Nature park"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="192dp" />
+
+        <RadioButton
+            android:id="@+id/r2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playground"
+            android:layout_marginTop="10dp"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+
+        <RadioButton
+            android:id="@+id/r3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Dog park"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="192dp" />
+
+        <RadioButton
+            android:id="@+id/r4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adventure park"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/b1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginLeft="280dp"
+        android:background="@drawable/next_button"
+        />
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350dp"
+        android:fontFamily="@font/antic"
+        android:textColor="#4E29A8"
+        android:text="Back"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp" />
+
+</LinearLayout>

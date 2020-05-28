@@ -1,5 +1,9 @@
 package com.example.park_mate;
 
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,20 +14,16 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 public class NewUser extends AppCompatActivity {
 
-     TextView back;
-      EditText emailid,username,mobilenb,password;
-      Button reg;
+    TextView back;
+    EditText emailid,username,mobilenb,password;
+    Button reg;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     LinearLayout linr;
@@ -37,13 +37,13 @@ public class NewUser extends AppCompatActivity {
         password=(EditText)findViewById(R.id.text2);
         reg=(Button)findViewById(R.id.button);
         back =(TextView)findViewById(R.id.back);
-        databaseReference= FirebaseDatabase.getInstance().getReference("");
+        databaseReference= FirebaseDatabase.getInstance().getReference("registration");
         firebaseAuth= FirebaseAuth.getInstance();
         linr=(LinearLayout)findViewById(R.id.singupform);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(NewUser.this, Login.class);
+                Intent i=new Intent(NewUser.this,Login.class);
                 startActivity(i);
             }
         });
@@ -64,11 +64,6 @@ public class NewUser extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()) {
-
-
-
-                        }
                     }
                 });
     }
