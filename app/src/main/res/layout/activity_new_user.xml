@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/singupform"
+    tools:context=".NewUser">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#fff"
+        tools:context=".Login"
+        >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginLeft="100dp"
+            app:srcCompat="@drawable/regusers" />
+
+
+        <TextView
+            android:id="@+id/logo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bungee"
+            android:text="Register now!"
+            android:textColor="#1B8350"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="40sp" />
+
+
+        <EditText
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_email_black"
+            android:hint="Email-Id"
+            android:textColorHint="#4E29A8"
+            android:inputType="textPersonName"
+            android:textColor="#4E29A8"
+            android:textSize="22dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_person_black"
+            android:hint="User Name"
+            android:textColorHint="#4E29A8"
+            android:inputType="textPersonName"
+            android:textColor="#4E29A8"
+            android:textSize="22dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+           />
+        <EditText
+            android:id="@+id/mobilenb"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:hint="Mobile Number"
+            android:textColorHint="#4E29A8"
+            android:inputType="textPersonName"
+            android:textColor="#4E29A8"
+            android:textSize="22dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <EditText
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_vpn_key_black"
+            android:hint="Password"
+            android:textColorHint="#4E29A8"
+            android:inputType="textPersonName"
+            android:textColor="#4E29A8"
+            android:textSize="22dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+           />
+        
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50sp"
+            android:background="@drawable/rounded_button"/>
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:fontFamily="@font/antic"
+            android:textColor="#4E29A8"
+            android:text="Back"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp" />
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
