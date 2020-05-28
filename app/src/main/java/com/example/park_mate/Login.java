@@ -37,27 +37,24 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       pgsBar = (ProgressBar) findViewById(R.id.pbloading);
-        back=(TextView)findViewById(R.id.back);
-        button1=(Button) findViewById(R.id.button1);
-        forgot =(TextView)findViewById(R.id.forgot);
-        button =(Button)findViewById(R.id.button2);
-        emailid=(EditText)findViewById(R.id.login_emailid);
-        password=(EditText)findViewById(R.id.login_password);
+        pgsBar = (ProgressBar) findViewById(R.id.pbloading);
+        back = (TextView) findViewById(R.id.back);
+        button1 = (Button) findViewById(R.id.button1);
+        forgot = (TextView) findViewById(R.id.forgot);
+        button = (Button) findViewById(R.id.button2);
+        emailid = (EditText) findViewById(R.id.login_emailid);
+        password = (EditText) findViewById(R.id.login_password);
         pgsBar.setVisibility(View.GONE);
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(Login.this,NewUser.class);
+                Intent intent = new Intent(Login.this, NewUser.class);
                 startActivity(intent);
             }
         });
-
-
 
 
 
@@ -67,25 +64,52 @@ public class Login extends AppCompatActivity {
                 pgsBar.setVisibility(View.VISIBLE);
                 String email, pass;
                 email = emailid.getText().toString();
-                pass= password.getText().toString();
+                pass = password.getText().toString();
                 if (TextUtils.isEmpty(email)) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please Enter Emailid!", Toast.LENGTH_SHORT);
-                    toast.setMargin(50,50);
+                    toast.setMargin(50, 50);
                     toast.show();
                     pgsBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(pass)) {
-                    Toast toast = Toast.makeText(getApplicationContext(),  "Please Enter Password!", Toast.LENGTH_SHORT);
-                    toast.setMargin(50,50);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please Enter Password!", Toast.LENGTH_SHORT);
+                    toast.setMargin(50, 50);
                     toast.show();
                     pgsBar.setVisibility(View.GONE);
                     return;
                 }
+                authcheck(email, pass);
+             /*   Intent intent =new Intent(Login.this,SurveyFirst.class);
+                startActivity(intent); */
 
 
             }
         });
-
     }
-}
+
+        public void authcheck (String emailid, String password)
+        {
+            firebaseAuth.signInWithEmailAndPassword(emailid, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+
+                                startActivity(new Intent(getApplicationContext(), SurveyFirst.class));
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast toast = Toast.makeText(getApplicationContext(), "Wrong Emaild and Password!", Toast.LENGTH_SHORT);
+                                toast.setMargin(50, 50);
+                                toast.show();
+                                pgsBar.setVisibility(View.GONE);
+
+
+                            }
+                            // ...
+                        }
+                    });
+        }
+    }
