@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165820694776",
+    "firebase_url": "https://parkmate-af352.firebaseio.com",
+    "project_id": "parkmate-af352",
+    "storage_bucket": "parkmate-af352.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165820694776:android:64b43cf341c803f65a3b0d",
+        "android_client_info": {
+          "package_name": "com.example.park_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165820694776-063ik0i9en1ult12eoo4atajv141r8ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.park_mate",
+            "certificate_hash": "2ba9447b377106632168ba5d9a16f8bf35530f4d"
+          }
+        },
+        {
+          "client_id": "165820694776-d46motslep4mgsh2l34k6cvn83t79jsn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWotp9NP4aUWqyqk--ZV7GHYuNd_tR1jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165820694776-d46motslep4mgsh2l34k6cvn83t79jsn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
