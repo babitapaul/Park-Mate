@@ -6,14 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#fff"
-    tools:context=".SurveyFirst">
+    tools:context=".SurveyTwo">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/datinginpark" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:src="@drawable/illustration"
+
+        />
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="Complete Survey"
+        android:textColor="#1B8350"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/slogan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/antic"
+        android:layout_marginTop="10dp"
+        android:textColor="#4E29A8"
+        android:text="You interested in which type of mate?"
+        android:textSize="18sp" />
 
 
     <RadioGroup
@@ -28,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Nature park"
+            android:text="Male"
             android:textColor="#4E29A8"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
@@ -37,7 +59,7 @@
             android:id="@+id/r2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Playground"
+            android:text="Female"
             android:layout_marginTop="10dp"
             android:textColor="#4E29A8"
             tools:layout_editor_absoluteX="107dp"
@@ -48,20 +70,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Dog park"
+            android:text="Any"
             android:textColor="#4E29A8"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
 
-        <RadioButton
-            android:id="@+id/r4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adventure park"
-            android:textColor="#4E29A8"
-            android:layout_marginTop="10dp"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="263dp" />
     </RadioGroup>
     <Button
         android:id="@+id/b1"
@@ -71,6 +84,8 @@
         android:layout_marginLeft="280dp"
         android:background="@drawable/next_button"
         />
+
+
     <TextView
         android:id="@+id/back"
         android:layout_width="wrap_content"
@@ -81,5 +96,4 @@
         android:text="Back"
         android:layout_marginTop="10dp"
         android:textSize="18sp" />
-
 </LinearLayout>

@@ -26,8 +26,19 @@ public class SurveyFirst extends AppCompatActivity {
             }
         });
 
-        
+
+        back=(TextView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(SurveyFirst.this,Login.class);
+                startActivity(intent);
+            }
+        });
     }
 
+
     }
+
+
 
