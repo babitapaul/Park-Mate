@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context=".SurveyThree">
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="Complete Survey"
+        android:textColor="#1B8350"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/slogan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/antic"
+        android:layout_marginTop="10dp"
+        android:textColor="#4E29A8"
+        android:text="What type of park you like?"
+        android:textSize="18sp" />
+
+
+    <RadioGroup
+        android:id="@+id/G1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/r1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Nature park"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="192dp" />
+
+        <RadioButton
+            android:id="@+id/r2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playground"
+            android:layout_marginTop="10dp"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+
+        <RadioButton
+            android:id="@+id/r3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Dog park"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="192dp" />
+        <RadioButton
+            android:id="@+id/r4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Adventure park"
+            android:textColor="#4E29A8"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="192dp" />
+
+    </RadioGroup>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginLeft="280dp"
+        android:background="@drawable/next_button"
+        />
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350dp"
+        android:fontFamily="@font/antic"
+        android:textColor="#4E29A8"
+        android:text="Back"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_processing"
+
+        />
+
+
+
+
+</LinearLayout>
