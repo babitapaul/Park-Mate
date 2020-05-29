@@ -15,6 +15,27 @@
         android:layout_height="150dp"
         app:srcCompat="@drawable/datinginpark" />
 
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="Complete Survey"
+        android:textColor="#1B8350"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/slogan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/antic"
+        android:layout_marginTop="10dp"
+        android:textColor="#4E29A8"
+        android:text="What type of park you like"
+        android:textSize="18sp" />
+
 
     <RadioGroup
         android:id="@+id/G1"
