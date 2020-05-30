@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 public class NewUser extends AppCompatActivity {
 
     TextView back;
@@ -64,6 +64,25 @@ public class NewUser extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        if (task.isSuccessful()) {
+                            registration us = new registration(emailid,username,password,"",mobilenb,"");
+
+
+                            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(us).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Snackbar snackbar1 = Snackbar.make(linr, "Registration SucessFully!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+
+                                    startActivity(new Intent(getApplicationContext(),Login.class));
+                                }
+                            });
+                        } else {
+                            Snackbar snackbar1 = Snackbar.make(linr, "This Emaillid Already Registered!", Snackbar.LENGTH_SHORT);
+                            snackbar1.show();
+
+                        }
                     }
                 });
     }
