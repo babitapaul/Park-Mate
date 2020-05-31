@@ -11,7 +11,7 @@
                 android:topRightRadius="20dp"
                 android:radius="10dp"/>
             <solid
-                android:color="#1B8350"/>
+                android:color="#1B8350" />
             <size
                 android:width="270dp"
                 android:height="60dp"/>

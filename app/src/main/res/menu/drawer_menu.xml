@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/Dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard"
+        android:iconTint="@color/colorAccent"/>
+
+    <item
+        android:id="@+id/users"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="Manage User"
+        android:iconTint="@color/colorAccent"/>
+           <item
+
+               android:id="@+id/parks"
+               android:icon="@drawable/ic_filter_vintage_black_24dp"
+               android:title="Manage Parks"
+               android:iconTint="@color/colorAccent"
+               />
+
+           <item
+
+               android:id="@+id/survey"
+               android:icon="@drawable/ic_exposure_black_24dp"
+               android:title="Manage Survey"
+               android:iconTint="@color/colorAccent"/>
+
+
+           <item
+
+               android:id="@+id/post"
+               android:icon="@drawable/ic_portrait_black_24dp"
+               android:title="Manage Post"
+               android:iconTint="@color/colorAccent"/>
+
+
+
+
+</menu>
