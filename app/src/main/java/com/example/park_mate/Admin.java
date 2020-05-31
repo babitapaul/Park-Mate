@@ -59,6 +59,20 @@ public class Admin extends AppCompatActivity {
                     pgsBar.setVisibility(View.GONE);
                     return;
                 }
+                if(admn.equals("parkmate@admin.com") && pas.equals("admin"))
+                {
+                    pgsBar.setVisibility(View.GONE);
+                    Intent intent = new Intent(Admin.this,welcomepage.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),  "Wrong Emaild and Password!", Toast.LENGTH_SHORT);
+                    toast.setMargin(50,50);
+                    toast.show();
+                    pgsBar.setVisibility(View.GONE);
+                }
+
 
 
             }
