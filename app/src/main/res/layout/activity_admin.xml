@@ -9,4 +9,97 @@
     tools:context=".Admin">
 
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/admin"
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="Admin"
+        android:textColor="#1B8350"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/slogan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/antic"
+        android:textColor="#4E29A8"
+        android:text="Login as the Admin User"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/adminemailid"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_email_black"
+        android:hint="Email-Id"
+        android:textColorHint="#4E29A8"
+        android:inputType="textPersonName"
+        android:textColor="#4E29A8"
+        android:textSize="22dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+    <EditText
+        android:id="@+id/adminpass"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_vpn_key_black"
+        android:hint="Password"
+        android:textColorHint="#4E29A8"
+        android:inputType="textPassword"
+        android:textColor="#4E29A8"
+        android:textSize="22dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ForgetPassword?"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#4E29A8"/>
+
+    <Button
+        android:id="@+id/adminlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50sp"
+        android:background="@drawable/rounded_button"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get help signed in?"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#4E29A8"/>
+    <ProgressBar
+        android:id="@+id/pbloading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="163dp"/>
+
+
 </LinearLayout>
