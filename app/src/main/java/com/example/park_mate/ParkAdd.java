@@ -1,5 +1,8 @@
 package com.example.park_mate;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +11,8 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,15 +20,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class ParkAdd extends AppCompatActivity {
 
@@ -113,6 +126,7 @@ public class ParkAdd extends AppCompatActivity {
                         return;
                     }
                     pgsBar.setVisibility(View.VISIBLE);
+                    Addpark();
                 }
             }
         });
@@ -140,6 +154,66 @@ public class ParkAdd extends AppCompatActivity {
     }
 
 
+    private void Addpark() {
 
+        if (imageuri != null) {
+            final StorageReference filerefrence = mstoragereReference.child(System.currentTimeMillis() + "." + getFileExtension(imageuri));
+            mstoragetask = filerefrence.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mprogressbar.setProgress(0);
+                        }
+                    }, 5000);
+
+                    filerefrence.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri s = uri;
+                            Toast toast = Toast.makeText(getApplicationContext(), "Park Added SuccessFully", Toast.LENGTH_SHORT);
+                            toast.setMargin(50, 50);
+                            toast.show();
+
+                            Intent intent =new Intent(ParkAdd.this,welcomepage.class);
+                            startActivity(intent);
+                        }
+                    });
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Snackbar snackbar1 = Snackbar.make(linr, e.getMessage(), Snackbar.LENGTH_SHORT);
+                    snackbar1.show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progressbar = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                    mprogressbar.setProgress((int) progressbar);
+                }
+            });
+        } else {
+
+            Toast toast = Toast.makeText(getApplicationContext(), "No File Selected!", Toast.LENGTH_SHORT);
+            toast.setMargin(50, 50);
+            toast.show();
+            pgsBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == pick_image_request && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageuri = data.getData();
+            Picasso.get().load(imageuri).into(mImageview);
+        }
+    }
 
 }
