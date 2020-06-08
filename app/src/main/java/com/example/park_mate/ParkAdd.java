@@ -11,8 +11,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,12 +21,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -36,7 +30,6 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 
 public class ParkAdd extends AppCompatActivity {
 
@@ -176,6 +169,11 @@ public class ParkAdd extends AppCompatActivity {
                             Toast toast = Toast.makeText(getApplicationContext(), "Park Added SuccessFully", Toast.LENGTH_SHORT);
                             toast.setMargin(50, 50);
                             toast.show();
+
+                            Park Add_park = new Park(pknme.getText().toString().trim(),Parkaddress.getText().toString().trim(),ParkState.getText().toString().trim(), ParkCity.getText().toString().trim(),ParkCounty.getText().toString().trim(),Parktype.getText().toString().trim(),s.toString());
+                            String uploadid = mdatabaserefrence.push().getKey();
+                            mdatabaserefrence.child(uploadid).setValue(Add_park);
+                            pgsBar.setVisibility(View.GONE);
 
                             Intent intent =new Intent(ParkAdd.this,welcomepage.class);
                             startActivity(intent);
