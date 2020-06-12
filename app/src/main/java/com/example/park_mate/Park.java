@@ -1,4 +1,6 @@
 package com.example.park_mate;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 public class Park {
 
