@@ -129,6 +129,10 @@ public class registration {
         return address;
     }
 
+    public void setAddress(String address) {
+        address = address;
+    }
+
 
 
 }

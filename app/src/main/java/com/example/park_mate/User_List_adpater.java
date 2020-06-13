@@ -18,6 +18,12 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -99,5 +105,39 @@ public class User_List_adpater extends RecyclerView.Adapter<User_List_adpater.My
                                         Toast.makeText(context, "User  Authentication deleted", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            });
 
-                            }
+                        }
+                    });
+
+
+                    DatabaseReference fDatabaseRoot;
+                FirebaseDatabase database;
+                database = FirebaseDatabase.getInstance();
+                fDatabaseRoot = database.getReference("users");
+                Query query = fDatabaseRoot.orderByChild("emailid").equalTo(emailidid);
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().removeValue();
+                            //  Toast.makeText(context,"User Record Also Deleted Sucessfully",Toast.LENGTH_SHORT).show();
+                        }
+                        registrations.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, registrations.size());
+                        
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+                    }
+                    });
+                }
+            });
+
+        }
+    }
+}
