@@ -3,6 +3,7 @@ package com.example.park_mate;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,7 +32,6 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-
 public class ParkAdd extends AppCompatActivity {
 
     private static final int pick_image_request = 1;
@@ -39,7 +40,7 @@ public class ParkAdd extends AppCompatActivity {
     private String Parkname;
     private ImageView mImageview;
     private ProgressBar pgsBar,mprogressbar;
-    private EditText  Parktype, ParkCity, ParkCounty, ParkState,Parkaddress;
+    private EditText Parktype, ParkCity, ParkCounty, ParkState,Parkaddress;
     private Uri imageuri;
     private StorageReference mstoragereReference;
     private DatabaseReference mdatabaserefrence;
@@ -174,7 +175,6 @@ public class ParkAdd extends AppCompatActivity {
                             String uploadid = mdatabaserefrence.push().getKey();
                             mdatabaserefrence.child(uploadid).setValue(Add_park);
                             pgsBar.setVisibility(View.GONE);
-
                             Intent intent =new Intent(ParkAdd.this,welcomepage.class);
                             startActivity(intent);
                         }
@@ -213,5 +213,4 @@ public class ParkAdd extends AppCompatActivity {
             Picasso.get().load(imageuri).into(mImageview);
         }
     }
-
 }

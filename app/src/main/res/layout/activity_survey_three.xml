@@ -19,7 +19,7 @@
         android:layout_marginLeft="10dp"
         android:textSize="40sp" />
     <TextView
-        android:id="@+id/slogan_name"
+        android:id="@+id/Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -29,26 +29,28 @@
         android:text="What type of park you like?"
         android:textSize="18sp" />
 
-
-    <RadioGroup
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/G1"
-        android:layout_marginTop="10dp"
+
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/r1"
+        <CheckBox
+            android:id="@+id/op1"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:text="Nature park"
             android:textColor="#4E29A8"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
 
-        <RadioButton
-            android:id="@+id/r2"
+        <CheckBox
+            android:id="@+id/op2"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Playground"
@@ -57,27 +59,77 @@
             tools:layout_editor_absoluteX="107dp"
             tools:layout_editor_absoluteY="263dp" />
 
-        <RadioButton
-            android:id="@+id/r3"
+        <CheckBox
+            android:id="@+id/op3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Dog park"
             android:textColor="#4E29A8"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="192dp" />
-        <RadioButton
-            android:id="@+id/r4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Adventure park"
-            android:textColor="#4E29A8"
+            android:visibility="gone"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
 
-    </RadioGroup>
+        <CheckBox
+            android:id="@+id/op4"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adventure park"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+        <CheckBox
+            android:id="@+id/op5"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Friendly"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+        <CheckBox
+            android:id="@+id/op6"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Friendly"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+        <CheckBox
+            android:id="@+id/op7"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Friendly"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+        <CheckBox
+            android:id="@+id/op8"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Friendly"
+            android:textColor="#4E29A8"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="263dp" />
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pbloading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+
+        android:layout_marginLeft="163dp"/>
     <Button
+        android:id="@+id/gotodashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
@@ -94,6 +146,7 @@
         android:text="Back"
         android:layout_marginTop="10dp"
         android:textSize="18sp" />
+
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"

@@ -22,7 +22,7 @@
         android:fontFamily="@font/bangers"
         android:text="ParkMate"
         android:textSize="70sp"
-      android:layout_marginTop="550dp"
+        android:layout_marginTop="550dp"
         android:layout_marginLeft="70dp"
         android:textColor="#1B8350"
         tools:layout_editor_absoluteX="115dp"

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteSurvey extends AppCompatActivity {
-
     ArrayAdapter<String> adapter;
     Spinner Questionlist;
     TextView loading;
@@ -119,6 +118,4 @@ public class DeleteSurvey extends AppCompatActivity {
 
         });
     }
-
-
 }

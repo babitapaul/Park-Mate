@@ -1,6 +1,5 @@
 package com.example.park_mate;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewUser extends AppCompatActivity {
-
     private RadioGroup genderGroup;
     private RadioButton Selectgender;
     TextView back;

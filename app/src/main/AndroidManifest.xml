@@ -9,12 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Second"></activity>
+        <activity android:name=".forgotpassword"></activity>
+        <activity android:name=".Userwelcome" />
+        <activity android:name=".welcomepage" />
+        <activity android:name=".UpdateOption_Survey" />
+        <activity android:name=".UpdateSurvey" />
+        <activity android:name=".Update_Question_Final" />
         <activity android:name=".SurveyThree" />
         <activity android:name=".SurveyTwo" />
         <activity android:name=".SurveyFirst" />
+        <activity android:name=".Parkupdation_final" />
+        <activity android:name=".Parkupdate" />
+        <activity android:name=".ParkAdd" />
         <activity android:name=".NewUser" />
-        <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Login" />
+        <activity android:name=".DeleteSurvey" />
+        <activity android:name=".DeletePark" />
+        <activity android:name=".Admin" />
+        <activity android:name=".AddOption_Survey" />
+        <activity android:name=".Add_Survery" />
+        <activity android:name=".Second" />
+        <activity android:name=".DropOption_Survey" />
 
         <meta-data
             android:name="preloaded_fonts"

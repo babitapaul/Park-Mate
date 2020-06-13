@@ -3,11 +3,10 @@ package com.example.park_mate;
 import java.util.List;
 
 public class registration {
-
-    String emailid, username, password, gender, mobileno, address, imageurl, status, aboutme, city;
-    List<String> firstsurvey, secondsurvey, thirdsurvey;
-
-    public registration() {
+    String emailid,username,password,gender,mobileno,address,imageurl,status,aboutme,city;
+    List<String> firstsurvey,secondsurvey,thirdsurvey;
+    public  registration()
+    {
 
     }
 
@@ -20,20 +19,22 @@ public class registration {
         this.city = city;
     }
 
-    public registration(String city, String emailid, String username, String password, String gender, String mobileno, String address, List<String> firstsurvey, List<String> secondsurvey, List<String> thirdsurvey, String imageurl, String status, String aboutme) {
-        this.emailid = emailid;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.mobileno = mobileno;
-        this.address = address;
-        this.firstsurvey = firstsurvey;
-        this.secondsurvey = secondsurvey;
-        this.thirdsurvey = thirdsurvey;
-        this.imageurl = imageurl;
-        this.status = status;
-        this.aboutme = aboutme;
-        this.city = city;
+    public registration(String city, String emailid, String username, String password, String gender, String mobileno, String address, List<String> firstsurvey, List<String> secondsurvey, List<String>thirdsurvey, String imageurl, String status, String aboutme)
+    {
+
+        this.emailid=emailid;
+        this.username=username;
+        this.password=password;
+        this.gender=gender;
+        this.mobileno=mobileno;
+        this.address=address;
+        this.firstsurvey=firstsurvey;
+        this.secondsurvey=secondsurvey;
+        this.thirdsurvey=thirdsurvey;
+        this.imageurl=imageurl;
+        this.status=status;
+        this.aboutme=aboutme;
+        this.city=city;
     }
 
     public String getAboutme() {
@@ -79,6 +80,7 @@ public class registration {
     public String getEmailid() {
         return emailid;
     }
+
 
 
     public String getImageurl() {
@@ -132,7 +134,4 @@ public class registration {
     public void setAddress(String address) {
         address = address;
     }
-
-
-
 }

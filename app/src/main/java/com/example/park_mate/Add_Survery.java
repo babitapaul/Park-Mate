@@ -1,5 +1,6 @@
 package com.example.park_mate;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class Add_Survery extends AppCompatActivity {
-
 
     TextView ques,mylist;
     EditText optns;

@@ -1,5 +1,9 @@
 package com.example.park_mate;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,10 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class Parkupdation_final extends AppCompatActivity {
+
     private static final int pick_image_request = 1;
     private Button ParkUpdtae, ParkImageBtn;
     TextView pknme;

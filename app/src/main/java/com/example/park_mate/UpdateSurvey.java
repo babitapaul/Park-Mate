@@ -34,15 +34,14 @@ public class UpdateSurvey extends AppCompatActivity {
     private ProgressBar pgsBar;
 
     private DatabaseReference fDatabaseRoot;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_survey);
-        pgsBar = (ProgressBar) findViewById(R.id.pbloading);
-        loading = (TextView) findViewById(R.id.loading);
-        QuestionUpdate = (Button) findViewById(R.id.myquestionupdate);
-        Questionlist = (Spinner) findViewById(R.id.questionlist);
+        pgsBar=(ProgressBar)findViewById(R.id.pbloading);
+        loading=(TextView)findViewById(R.id.loading);
+        QuestionUpdate=(Button)findViewById(R.id.myquestionupdate);
+        Questionlist=(Spinner)findViewById(R.id.questionlist);
         database = FirebaseDatabase.getInstance();
         fDatabaseRoot = database.getReference("Survey");
         Retrieve_Questions();
@@ -50,19 +49,19 @@ public class UpdateSurvey extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.notifyDataSetChanged();
-                String qusname = Questionlist.getSelectedItem().toString();
-                startActivity(new Intent(UpdateSurvey.this, Update_Question_Final.class).putExtra("que", qusname));
+                String qusname=Questionlist.getSelectedItem().toString();
+                startActivity(new Intent(UpdateSurvey.this,Update_Question_Final.class).putExtra("que",qusname));
             }
         });
     }
-
-    void Retrieve_Questions() {
+    void Retrieve_Questions()
+    {
         Query query = fDatabaseRoot.orderByKey();
-        queslist.add(0, "Select Question");
+        queslist.add(0,"Select Question");
         fDatabaseRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot questionrecord : dataSnapshot.getChildren()) {
+                for(DataSnapshot questionrecord : dataSnapshot.getChildren()){
 
                     queslist.add(questionrecord.child("question").getValue().toString());
                 }
@@ -74,25 +73,27 @@ public class UpdateSurvey extends AppCompatActivity {
 
             }
         });
-        adapter = new ArrayAdapter<String>(this, R.layout.color_spinner_layout, queslist);
+        adapter = new ArrayAdapter<String>(this,R.layout.color_spinner_layout,queslist);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         Questionlist.setAdapter(adapter);
         pgsBar.setVisibility(View.GONE);
         loading.setVisibility(View.GONE);
-        Questionlist.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+        Questionlist.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View view, int pos,
                                        long id) {
-                if (parent.getItemAtPosition(pos).equals("Select Question")) {
+                if(parent.getItemAtPosition(pos).equals("Select Question"))
+                {
 
-                } else {
-                    String name = parent.getItemAtPosition(pos).toString();
-                    Toast toast = Toast.makeText(getApplicationContext(), "Your Select " + name, Toast.LENGTH_SHORT);
+                }
+                else
+                {
+                    String name=parent.getItemAtPosition(pos).toString();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Your Select "+name, Toast.LENGTH_SHORT);
                     toast.setMargin(50, 50);
                     toast.show();
                 }
 
             }
-
             public void onNothingSelected(AdapterView<?> parent) {
             }
 

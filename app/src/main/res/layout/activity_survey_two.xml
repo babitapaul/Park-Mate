@@ -38,15 +38,16 @@
         android:textSize="18sp" />
 
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/G1"
+        android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/r1"
+        <CheckBox
+            android:id="@+id/gen1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -55,8 +56,8 @@
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
 
-        <RadioButton
-            android:id="@+id/r2"
+        <CheckBox
+            android:id="@+id/gen2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
@@ -65,8 +66,8 @@
             tools:layout_editor_absoluteX="107dp"
             tools:layout_editor_absoluteY="263dp" />
 
-        <RadioButton
-            android:id="@+id/r3"
+        <CheckBox
+            android:id="@+id/gen3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -75,7 +76,7 @@
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="192dp" />
 
-    </RadioGroup>
+    </LinearLayout>
     <Button
         android:id="@+id/b1"
         android:layout_width="wrap_content"

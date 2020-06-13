@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeletePark extends AppCompatActivity {
+
     ArrayAdapter<String> adapter;
     Spinner Parklist;
     TextView loading;
@@ -39,13 +40,7 @@ public class DeletePark extends AppCompatActivity {
         pgsBar=(ProgressBar)findViewById(R.id.pbloading);
         loading=(TextView)findViewById(R.id.loading);
         ParkDelete=(Button)findViewById(R.id.parkdelete);
-    /*    adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.parklist_array,
-                R.layout.color_spinner_layout
-        );
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-        Parklist.setAdapter(adapter); */
+
         Parklist=(Spinner)findViewById(R.id.parklist);
         database = FirebaseDatabase.getInstance();
         fDatabaseRoot = database.getReference("ParkRecord");

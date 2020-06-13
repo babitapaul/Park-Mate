@@ -3,6 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
@@ -83,7 +87,5 @@
             android:layout_marginLeft="300sp"
             android:background="@drawable/colorbutton"/>
     </RelativeLayout>
-
-
 
 </LinearLayout>

@@ -1,6 +1,12 @@
 package com.example.park_mate;
+
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 public class fragmentmanageparks extends Fragment {
 
@@ -23,6 +25,7 @@ public class fragmentmanageparks extends Fragment {
         View view = inflater.inflate(R.layout.fragment_manageparks,container,false);
         Parkname=(EditText)view.findViewById(R.id.prkn);
         prkbtn=(Button)view.findViewById(R.id.prkadd);
+        getActivity().setTitle("Manage Park");
         parkdelete=(Button)view.findViewById(R.id.delete);
         parkupdate=(Button)view.findViewById(R.id.modify);
         prkbtn.setOnClickListener(new View.OnClickListener() {

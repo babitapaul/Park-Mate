@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class welcomepage extends AppCompatActivity {
+public class Userwelcome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcomepage);
+        setContentView(R.layout.activity_userwelcome);
     }
 }

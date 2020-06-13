@@ -1,23 +1,21 @@
 package com.example.park_mate;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 public class Park {
 
     String parkname,address,imageurl,state,city,country,type;
-    public Park()
+    public  Park()
     {
 
     }
-    public Park(String parkname, String address, String state, String city, String country, String type, String imageurl)
+    public  Park(String parkname,String address,String state,String city,String country,String type,String imageurl)
     {
-         this.parkname=parkname;
-         this.address=address;
-         this.city=city;
-         this.country=country;
-         this.imageurl=imageurl;
-         this.type=type;
-         this.state=state;
+        this.parkname=parkname;
+        this.address=address;
+        this.city=city;
+        this.country=country;
+        this.imageurl=imageurl;
+        this.type=type;
+        this.state=state;
 
 
     }
@@ -77,8 +75,5 @@ public class Park {
     public void setType(String type) {
         this.type = type;
     }
-
-
-
 
 }

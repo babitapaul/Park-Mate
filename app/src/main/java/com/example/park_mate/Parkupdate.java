@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parkupdate extends AppCompatActivity {
+
     ArrayAdapter<String> adapter;
     Spinner Parklist;
     TextView loading;
@@ -103,7 +104,6 @@ public class Parkupdate extends AppCompatActivity {
 
         });
     }
-
 
 
 }

@@ -1,63 +1,67 @@
 package com.example.park_mate;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
 
 public class fragmentManagesurvey extends Fragment {
 
-    Button add,dt,up;
-    EditText question;
-
+    ImageView btn,btn2,btn3,btn4;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_managesurveys,container,false);
-        add=(Button)view.findViewById(R.id.add);
-        dt=(Button)view.findViewById(R.id.delete);
-        question=(EditText)view.findViewById(R.id.surveryquestion);
-        up=(Button)view.findViewById(R.id.modify);
-        dt.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+        btn=(ImageView)view.findViewById(R.id.mngprk);
+        btn2=(ImageView)view.findViewById(R.id.mnguser);
+        getActivity().setTitle("Welcome Admin");
+        btn3=(ImageView)view.findViewById(R.id.mngsurv);
+        btn4=(ImageView)view.findViewById(R.id.mngpst);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),DeleteSurvey.class);
-
-                startActivity(i);
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new fragmentmanageparks());
+                fragmentTransaction.commit();
             }
         });
-        up.setOnClickListener(new View.OnClickListener() {
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),UpdateSurvey.class);
-
-                startActivity(i);
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new manageuserfragment());
+                fragmentTransaction.commit();
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (TextUtils.isEmpty(question.getText().toString().trim()))
-                {
-                    Toast toast = Toast.makeText(getContext(), "Please Enter Survey Question!", Toast.LENGTH_SHORT);
-                    toast.setMargin(50,50);
-                    toast.show();
-
-                    return;
-                }
-                Intent i = new Intent(getContext(),Add_Survery.class);
-                i.putExtra("Question",question.getText().toString());
-                startActivity(i);
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new fragmentManagesurvey());
+                fragmentTransaction.commit();
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new managepostfragment());
+                fragmentTransaction.commit();
             }
         });
         return view;
