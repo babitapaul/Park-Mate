@@ -126,7 +126,7 @@ public class User_List_adpater extends RecyclerView.Adapter<User_List_adpater.My
                         registrations.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, registrations.size());
-                        
+
                     }
 
                     @Override

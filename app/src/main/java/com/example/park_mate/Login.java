@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-
+                                pgsBar.setVisibility(View.GONE);
                                 startActivity(new Intent(getApplicationContext(), SurveyFirst.class));
 
                             } else {
