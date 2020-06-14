@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ParkDetail">
+
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="310dp"
+        android:id="@+id/parkimg"
+        android:src="@drawable/parkdemo"
+        android:layout_height="200dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park Name"
+        android:layout_marginTop="25dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parkname"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park Type"
+        android:layout_marginTop="15dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parktype"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park city"
+        android:layout_marginTop="15dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parkcity"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park State"
+        android:layout_marginTop="15dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parkstate"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park Country"
+        android:layout_marginTop="15dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parkcountry"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Park Address"
+        android:layout_marginTop="15dp"
+        android:textColor="#4E29A8"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/parkaddress"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_height="wrap_content">
+    </TextView>
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/mypic"
+            android:layout_width="40dp"
+            android:src="@drawable/userimage"
+            android:layout_height="30dp"/>
+        <EditText
+            android:id="@+id/postit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write Something in Your Timeline"
+            android:textColorHint="#4E29A8"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/postintimeline"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="POST IN YOUR TIMELINE"
+            android:textColor="#fff"
+            android:background="@drawable/colorbutton"/>
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pbloading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="163dp"/>
+</LinearLayout>
