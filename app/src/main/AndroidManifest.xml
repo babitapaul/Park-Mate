@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewUser_Timeline"></activity>
+        <activity android:name=".ParkDetail"></activity>
+        <activity android:name=".ViewUser_Timeline" />
         <activity android:name=".Block_Reason" />
         <activity android:name=".MycommentRead" />
         <activity android:name=".Control_Profile" />
