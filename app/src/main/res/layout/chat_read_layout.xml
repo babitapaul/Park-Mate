@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+   android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/postpersonimage"
+            android:layout_width="40dp"
+            android:src="@drawable/userimage"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_marginLeft="12dp"
+            android:textColor="#4E29A8"
+            android:textStyle="bold"
+            android:fontFamily="@font/antic"
+            android:text="Name"
+            android:id="@+id/name"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:textColor="#4E29A8"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/antic"
+            android:text="Your Message"
+            android:id="@+id/chatmsg"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#4E29A8"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/antic"
+            android:text="Time"
+            android:id="@+id/time"
+            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <ImageView
+            android:layout_gravity="right"
+            android:id="@+id/deletechat"
+            android:layout_width="50dp"
+            android:src="@drawable/deletecomment"
+            android:layout_height="30dp">
+
+        </ImageView>
+    </LinearLayout>
+
+
+</LinearLayout>
