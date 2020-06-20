@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommentRead"></activity>
+        <activity android:name=".WriteReview"></activity>
+        <activity android:name=".Send_Message" />
+        <activity android:name=".CommentRead" />
         <activity android:name=".Chat" />
         <activity android:name=".ParkDetail" />
         <activity android:name=".ViewUser_Timeline" />

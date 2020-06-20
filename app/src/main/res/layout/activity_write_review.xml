@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyReview_Read">
-
+    android:layout_height="match_parent"
+    tools:context=".WriteReview">
     <LinearLayout
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
@@ -20,7 +20,7 @@
             android:id="@+id/wrt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write review Reply"
+            android:hint="Write review Now"
             android:textColorHint="#4E29A8"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
@@ -48,12 +48,11 @@
             android:textColor="#fff"
             android:background="@drawable/colorbutton"/>
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:id="@+id/myreviewlist"
+        android:id="@+id/writetrecyler"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-
 </LinearLayout>

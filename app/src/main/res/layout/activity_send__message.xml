@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cardview_light_background"
+    android:layout_height="match_parent"
+    tools:context=".Send_Message">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/message"
+
+            android:layout_width="match_parent"
+            android:src="@drawable/message"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_marginTop="200dp"
+            android:id="@+id/success"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/messagefly"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/wrtmsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type here................."
+            android:textColorHint="#4E29A8"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+
+            android:id="@+id/SendMessage"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:text="Send"
+            android:textColor="#fff"
+            android:background="@drawable/colorbutton"/>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Home"
+            android:textColor="#fff"
+            android:background="@drawable/colorbutton"/>
+
+    </LinearLayout>
+
+</LinearLayout>

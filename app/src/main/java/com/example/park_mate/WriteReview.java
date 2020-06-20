@@ -1,16 +1,14 @@
 package com.example.park_mate;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,9 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MyReview_Read extends Fragment {
+public class WriteReview extends AppCompatActivity {
 
-    My_Profile_Review_Read_adpter profile_review_read_adpter;
+    Profile_Review_Read_adpter profile_review_read_adpter;
     Session st;
     ImageView currentuserimage;
     EditText write;
@@ -41,20 +39,23 @@ public class MyReview_Read extends Fragment {
 
     ArrayList<ProfileReview> sjs;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view= inflater.inflate(R.layout.fragment_my_review__read, container, false);
-        st=new Session(getContext());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_write_review);
+        st=new Session(getApplicationContext());
         st.getname();
-        currentuserimage=(ImageView)view.findViewById(R.id.mypic);
-        writepost=(Button)view.findViewById(R.id.writepost);
-        pb=(ProgressBar)view.findViewById(R.id.pbloading);
+        Intent intent = getIntent();
+
+        userrevireemailid=intent.getStringExtra("profilereviewemailid");
+        nm=intent.getStringExtra("username");
+        currentuserimage=(ImageView)findViewById(R.id.mypic);
+        writepost=(Button)findViewById(R.id.writepost);
+
+        pb=(ProgressBar)findViewById(R.id.pbloading);
         pb.setVisibility(View.GONE);
-        getActivity().setTitle("My Profile Review");
-        write=(EditText)view.findViewById(R.id.wrt);
-        recyclerView=(RecyclerView)view.findViewById(R.id.myreviewlist);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        write=(EditText)findViewById(R.id.wrt);
+        recyclerView=(RecyclerView)findViewById(R.id.writetrecyler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         ReviewFetch();
         writepost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +65,6 @@ public class MyReview_Read extends Fragment {
             }
         });
 
-        return  view;
     }
     void setwritereview()
     {
@@ -72,10 +72,10 @@ public class MyReview_Read extends Fragment {
         pb.setVisibility(View.VISIBLE);
         String mydatetime = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         databaserefrence= FirebaseDatabase.getInstance().getReference("Profile review");
-        ProfileReview reviewPost=new ProfileReview(mydatetime,st.getusename(),st.getusename(),write.getText().toString(),st.getimageurl(),st.getname());
+        ProfileReview reviewPost=new ProfileReview(mydatetime,st.getusename(),userrevireemailid,write.getText().toString(),st.getimageurl(),st.getname());
         String commentd=databaserefrence.push().getKey();
         databaserefrence.child(commentd).setValue(reviewPost);
-        Toast toast=Toast.makeText(getContext(),"Review Post SuccessFully ",Toast.LENGTH_SHORT);
+        Toast toast=Toast.makeText(getApplicationContext(),"Review Post SuccessFully ",Toast.LENGTH_SHORT);
         toast.setMargin(50,50);
         toast.show();
         write.setText(null);
@@ -88,7 +88,7 @@ public class MyReview_Read extends Fragment {
 
         sjs=new ArrayList<ProfileReview>();
         databaserefrence= FirebaseDatabase.getInstance().getReference("Profile review");
-        Query query=databaserefrence.orderByChild("useremailidaboutreview").equalTo(st.getusename());
+        Query query=databaserefrence.orderByChild("useremailidaboutreview").equalTo(userrevireemailid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -101,7 +101,7 @@ public class MyReview_Read extends Fragment {
 
                 }
 
-                profile_review_read_adpter=new My_Profile_Review_Read_adpter(getContext(),sjs);
+                profile_review_read_adpter=new Profile_Review_Read_adpter(getApplicationContext(),sjs);
 
                 recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
                 recyclerView.setAdapter(profile_review_read_adpter);
