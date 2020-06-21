@@ -9,38 +9,53 @@
         android:iconTint="@color/colorAccent"/>
 
 
-           <item
+    <item
 
-               android:id="@+id/parklist"
-               android:icon="@drawable/ic_filter_vintage_black_24dp"
-               android:title="Parks"
-               android:iconTint="@color/colorAccent"
-               />
-        <item
+        android:id="@+id/parklist"
+        android:icon="@drawable/ic_filter_vintage_black_24dp"
+        android:title="Parks"
+        android:iconTint="@color/colorAccent"
+        />
+    <item
+        android:id="@+id/Notification"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="Notification"
+        android:iconTint="@color/colorAccent"/>
+    <item
+        android:id="@+id/friendlist"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="Friends"
+        android:iconTint="@color/colorAccent"/>
+    <item
+        android:id="@+id/pendingfriendlist"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="Sent Pending Request "
+        android:iconTint="@color/colorAccent"/>
+    <item
         android:id="@+id/message"
         android:icon="@drawable/ic_people_black_24dp"
         android:title="Message"
         android:iconTint="@color/colorAccent"/>
-           <item
+    <item
 
-               android:id="@+id/match"
-               android:icon="@drawable/ic_exposure_black_24dp"
-               android:title="Match For you"
-               android:iconTint="@color/colorAccent"/>
-        <item
+        android:id="@+id/match"
+        android:icon="@drawable/ic_exposure_black_24dp"
+        android:title="Match For you"
+        android:iconTint="@color/colorAccent"/>
+    <item
 
         android:id="@+id/managereview"
         android:icon="@drawable/ic_portrait_black_24dp"
         android:title="Manage Review"
         android:iconTint="@color/colorAccent"/>
 
-                 <item
+    <item
 
-               android:id="@+id/profile"
-               android:icon="@drawable/ic_portrait_black_24dp"
-               android:title="Edit Profile"
-               android:iconTint="@color/colorAccent"/>
-        <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_portrait_black_24dp"
+        android:title="Edit Profile"
+        android:iconTint="@color/colorAccent"/>
+    <item
 
         android:id="@+id/block"
         android:icon="@drawable/ic_portrait_black_24dp"

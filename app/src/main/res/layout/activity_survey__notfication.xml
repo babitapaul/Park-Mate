@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".Survey_Notfication">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/datinginpark" />
+
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="You Already Taken The Survey,Do you need to take It Again?"
+        android:textColor="#1B8350"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="30sp" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/skip"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/next_button"
+            />
+
+
+        <Button
+            android:id="@+id/again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes Take it Agian"
+            android:layout_marginLeft="140dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/next_button"
+            />
+
+    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="210dp"
+        android:src="@drawable/dogs"
+
+        />
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+   android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/posttimelineimage"
+            android:layout_width="40dp"
+            android:src="@drawable/userimage"
+            android:layout_height="30dp"/>
+        <TextView
+            android:textColor="#4E29A8"
+            android:textStyle="bold"
+            android:fontFamily="@font/antic"
+            android:text="Name"
+            android:id="@+id/name"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:textColor="#4E29A8"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/antic"
+            android:text="Your Timeline Message"
+            android:id="@+id/comment"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:textColor="#4E29A8"
+        android:textStyle="bold"
+        android:fontFamily="@font/antic"
+        android:text="Time"
+         android:layout_marginLeft="15dp"
+        android:id="@+id/timepost"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/deletecomment"
+        android:layout_width="50dp"
+        android:src="@drawable/deletecomment"
+        android:layout_height="30dp">
+
+    </ImageView>
+
+    </LinearLayout>
+</LinearLayout>

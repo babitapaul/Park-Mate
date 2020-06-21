@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WriteReview"></activity>
+        <activity android:name=".Survey_Notfication"></activity>
+        <activity android:name=".ManageReview" />
+        <activity android:name=".ManageComment" />
+        <activity android:name=".WriteReview" />
         <activity android:name=".Send_Message" />
         <activity android:name=".CommentRead" />
         <activity android:name=".Chat" />
