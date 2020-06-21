@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Editprofile">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerInside"
+            app:cardCornerRadius="250dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:src="@drawable/userimage"
+                android:id="@+id/pic"
+                android:scaleType="fitXY"
+                android:textColor="#fff"
 
-</FrameLayout>
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+
+            </ImageView>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/username"
+            android:textColor="#4E29A8"
+            android:text="Person Name"
+            android:layout_height="match_parent">
+
+        </TextView>
+        <Button
+            android:id="@+id/choosepic"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/colorbutton"
+            android:layout_gravity="center"
+            android:text="Change Picture"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/ourprogressbar"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            >
+
+        </androidx.core.widget.ContentLoadingProgressBar>
+
+        <Button
+            android:id="@+id/UpdateNow"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_width="240dp"
+            android:layout_height="70dp"
+            android:text="Update Now"
+            android:textColor="#fff"
+            android:background="@drawable/colorbutton"/>
+
+        <ProgressBar
+            android:id="@+id/pbloading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="163dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

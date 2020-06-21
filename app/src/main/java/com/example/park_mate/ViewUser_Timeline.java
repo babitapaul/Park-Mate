@@ -33,13 +33,15 @@ public class ViewUser_Timeline extends AppCompatActivity {
 
     ImageView userpic;
     TextView name,city,gender;
-    Button writereview,block,message;
+    Button writereview,block,message,frdreq;
     String Useremailid,userimageurl,mpname;
     ArrayList<Timeline> sts;
     RecyclerView recyclerView;
     Session st;
     ProgressBar pb;
+    String chatid;
     private DatabaseReference reference;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class ViewUser_Timeline extends AppCompatActivity {
         pb=(ProgressBar)findViewById(R.id.pbloading);
         userpic=(ImageView)findViewById(R.id.pic);
         writereview=(Button)findViewById(R.id.writereview);
+        frdreq=(Button)findViewById(R.id.Sendfriendrequest);
         name=(TextView)findViewById(R.id.username);
         city=(TextView)findViewById(R.id.city);
         gender=(TextView)findViewById(R.id.gender);
@@ -58,16 +61,30 @@ public class ViewUser_Timeline extends AppCompatActivity {
         city.setText(intent.getStringExtra("usercity"));
         gender.setText(intent.getStringExtra("usergender"));
         userimageurl=intent.getStringExtra("userimageurl");
+        chatid=intent.getStringExtra("freqid");
         recyclerView=(RecyclerView)findViewById(R.id.viewtimelinerecyler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         block=(Button)findViewById(R.id.block);
         message=(Button)findViewById(R.id.message);
-        /*message.setOnClickListener(new View.OnClickListener() {
+        message.setClickable(false);
+        writereview.setClickable(false);
+        block.setClickable(false);
+        recyclerView.setVisibility(View.GONE);
+        check_already_setrequest();
+        check_past_anyrequest();
+        message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Send_Message.class).putExtra("toemailid",Useremailid).putExtra("toname",mpname).putExtra("toimage",userimageurl));
             }
-        });*/
+        });
+        frdreq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Sendfriendrequest();
+            }
+        });
         if(userimageurl.trim().isEmpty()) {
             Picasso.get().load(R.drawable.defultuser).into(userpic);
         }
@@ -79,7 +96,7 @@ public class ViewUser_Timeline extends AppCompatActivity {
         writereview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(getApplicationContext(),WriteReview.class).putExtra("profilereviewemailid",Useremailid).putExtra("username",intent.getStringExtra("username")));
+                startActivity(new Intent(getApplicationContext(),WriteReview.class).putExtra("profilereviewemailid",Useremailid).putExtra("username",intent.getStringExtra("username")));
             }
         });
         block.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +156,121 @@ public class ViewUser_Timeline extends AppCompatActivity {
                 View_User_TimeLine_List_adpater view_user_timeLine_list_adpater=new View_User_TimeLine_List_adpater(getApplicationContext(),sts);
                 recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
                 recyclerView.setAdapter(view_user_timeLine_list_adpater);
+                pb.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    void  Sendfriendrequest()
+    {
+        reference = FirebaseDatabase.getInstance().getReference("Friend Request");
+
+        String requestid=reference.push().getKey();
+        Friend_Request friend_request=new Friend_Request(st.getusename(),Useremailid,st.getname(),mpname,st.getimageurl(),userimageurl,"Pending",requestid,city.getText().toString(),gender.getText().toString());
+
+        reference.child(requestid).setValue(friend_request);
+
+        Toast toast = Toast.makeText(getApplicationContext(), "Friend Request Send SuccessFully", Toast.LENGTH_SHORT);
+        toast.setMargin(50,50);
+        toast.show();
+        frdreq.setText("Friend Request Sent");
+    }
+
+    void check_already_setrequest()
+    {
+        pb.setVisibility(View.VISIBLE);
+
+        sts=new ArrayList<Timeline>();
+        reference= FirebaseDatabase.getInstance().getReference("Friend Request");
+        Query query=reference.orderByChild("senderemailid").equalTo(st.getusename());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
+
+
+                    Friend_Request us=dataSnapshot1.getValue(Friend_Request.class);
+                    if(us.getFromemailid().equals(Useremailid) && us.getStatus().equals("Pending"))
+                    {
+                        frdreq.setText("Friend Request Already sent");
+                        message.setClickable(false);
+                        writereview.setClickable(false);
+                        block.setClickable(false);
+                        recyclerView.setVisibility(View.GONE);
+                        frdreq.setVisibility(View.GONE);
+                        message.setVisibility(View.GONE);
+                        writereview.setVisibility(View.GONE);
+                        block.setVisibility(View.GONE);
+                    }
+                    else if(us.getFromemailid().equals(Useremailid) && us.getStatus().equals("Approved"))
+                    {
+                        message.setClickable(true);
+                        writereview.setClickable(true);
+                        block.setClickable(true);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        frdreq.setVisibility(View.GONE);
+                        message.setVisibility(View.VISIBLE);
+                        writereview.setVisibility(View.VISIBLE);
+                        block.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                pb.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    void check_past_anyrequest()
+    {
+        pb.setVisibility(View.VISIBLE);
+
+        reference= FirebaseDatabase.getInstance().getReference("Friend Request");
+        Query query=reference.orderByChild("requestid").equalTo(chatid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
+
+
+                    Friend_Request us=dataSnapshot1.getValue(Friend_Request.class);
+                    if(us.getStatus().equals("Pending"))
+                    {
+                        frdreq.setText("Friend Request Already sent");
+                        message.setClickable(false);
+                        writereview.setClickable(false);
+                        block.setClickable(false);
+                        recyclerView.setVisibility(View.GONE);
+                        frdreq.setVisibility(View.GONE);
+                        message.setVisibility(View.GONE);
+                        writereview.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        message.setClickable(true);
+                        writereview.setClickable(true);
+                        block.setClickable(true);
+                        message.setVisibility(View.VISIBLE);
+                        writereview.setVisibility(View.VISIBLE);
+                        block.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        frdreq.setVisibility(View.GONE);
+                    }
+
+                }
+
                 pb.setVisibility(View.GONE);
             }
 

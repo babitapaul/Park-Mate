@@ -16,9 +16,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SurveyFirst extends AppCompatActivity {
 
@@ -26,18 +28,29 @@ public class SurveyFirst extends AppCompatActivity {
     TextView back,Question;
     CheckBox op1,op2,op3,op4,op5,op6,op7,op8;
     ProgressBar pb;
-    DatabaseReference reference;
-
+    private DatabaseReference ref;
+    private DatabaseReference refs;
+    Session j;
     ArrayList<Survey> surveys;
     ArrayList<String>Surveyist;
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_first);
         Surveyist=new ArrayList<String>();
         surveys=new ArrayList<Survey>();
-        reference= FirebaseDatabase.getInstance().getReference("Survey");
-        fetchquestion();
+        ref= FirebaseDatabase.getInstance().getReference("Survey");
+        refs= FirebaseDatabase.getInstance().getReference("users");
+        //  fetchquestion();
+
+        j=new Session(getApplicationContext());
+        Intent intent = getIntent();
+        token= intent.getStringExtra("token");
+        if(token.equals("0"))
+        {
+            surveyHistorycheck();
+        }
         pb=(ProgressBar)findViewById(R.id.pbloading);
         b1=(Button)findViewById(R.id.b1);
         Question=(TextView)findViewById(R.id.Question);
@@ -50,13 +63,11 @@ public class SurveyFirst extends AppCompatActivity {
         op7=(CheckBox)findViewById(R.id.op7);
         op8=(CheckBox)findViewById(R.id.op8);
         fetchquestion();
-
-
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+                Surveyist.removeAll(Surveyist);
 
                 if(op1.isChecked())
                 {
@@ -117,7 +128,7 @@ public class SurveyFirst extends AppCompatActivity {
     }
     void fetchquestion()
     {
-        reference.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -249,4 +260,40 @@ public class SurveyFirst extends AppCompatActivity {
         });
 
     }
+    void surveyHistorycheck()
+    {
+
+
+
+        Query query=refs.orderByChild("emailid").equalTo(j.getusename());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
+                    //  System.out.println("value is "+dataSnapshot1.getChildren().toString());
+                    registration uts = dataSnapshot1.getValue(registration .class);
+
+                    if(uts.getSurverysts().equals("1"))
+                    {
+
+
+                        startActivity(new Intent(SurveyFirst.this,Survey_Notfication.class));
+
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
 }

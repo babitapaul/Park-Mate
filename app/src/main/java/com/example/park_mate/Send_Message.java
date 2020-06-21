@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -26,13 +27,14 @@ import java.util.List;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Send_Message extends AppCompatActivity {
+
     private Session mysesion;
     ImageView ss;
     EditText wrtmsg;
     Button SendMessage,home;
     DatabaseReference databaseReference;
     String toimageurl,toname,toemailid;
-    List<String> mymeesage;
+    List<String>mymeesage;
     GifImageView s;
     int i=0;
     @Override

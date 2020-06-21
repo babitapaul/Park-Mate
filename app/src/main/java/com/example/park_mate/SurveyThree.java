@@ -16,19 +16,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SurveyThree extends AppCompatActivity {
-
     TextView back,Question;
-    Button b1;
+    Button b111;
     CheckBox op1,op2,op3,op4,op5,op6,op7,op8;
     ProgressBar pb;
-    DatabaseReference reference;
+    private DatabaseReference reference;
     Session s;
     ArrayList<Survey> surveys;
     ArrayList<String>Surveyist,Surveytwolist,Surveythreelist;
@@ -39,7 +40,7 @@ public class SurveyThree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_three);
         s=new Session(getApplication());
-        b1 =(Button)findViewById(R.id.gotodashboard);
+        b111 =(Button)findViewById(R.id.gotodashboard);
         Question=(TextView)findViewById(R.id.Question);
         surveys=new ArrayList<Survey>();
         Surveyist=new ArrayList<>();
@@ -53,7 +54,7 @@ public class SurveyThree extends AppCompatActivity {
         reference= FirebaseDatabase.getInstance().getReference("Survey");
         fetchquestion();
         pb=(ProgressBar)findViewById(R.id.pbloading);
-        b1=(Button)findViewById(R.id.gotodashboard);
+
         Question=(TextView)findViewById(R.id.Question);
         op1=(CheckBox)findViewById(R.id.op1);
         op2=(CheckBox)findViewById(R.id.op2);
@@ -78,7 +79,7 @@ public class SurveyThree extends AppCompatActivity {
             }
         });
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        b111.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -118,20 +119,15 @@ public class SurveyThree extends AppCompatActivity {
                 }
                 if(Surveythreelist.size()>0) {
 
-                    Set<String> iinds = new HashSet<String>(Surveytwolist);
-                    s.setsecondsurvey(iinds);
+                    //Set<String> iinds = new HashSet<String>(Surveytwolist);
+                    //    s.setsecondsurvey(iinds);
 
                     Surveyist.addAll(Surveythreelist);
-                    Set<String> iiird = new HashSet<String>(Surveyist);
-                    s.setparksurvey(iiird);
+                    //  Surveyist.addAll(Surveytwolist);
+                    // Set<String> iiird = new HashSet<String>(Surveyist);
+                    //   s.setparksurvey(iiird);
 
-                    Toast toast = Toast.makeText(getApplicationContext(), "Welcome To ParkMate", Toast.LENGTH_SHORT);
-                    toast.setMargin(50, 50);
-                    toast.show();
-                    pb.setVisibility(View.GONE);
-                    Intent i=new Intent(SurveyThree.this,Userwelcome.class);
 
-                    startActivity(i);
 
                   /*  Intent i=new Intent(SurveyTwo.this,SurveyThree.class);
                     i.putExtra("SurveyFirstList",k);
@@ -141,7 +137,7 @@ public class SurveyThree extends AppCompatActivity {
                    */
 
 
-            /*        final Query query = fDatabaseRoot.orderByChild("emailid").equalTo(s.getusename());
+                    final Query query = fDatabaseRoot.orderByChild("emailid").equalTo(s.getusename());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -149,9 +145,18 @@ public class SurveyThree extends AppCompatActivity {
                                 String key = appleSnapshot.getKey();
                                 //    update(key);
 
-                                fDatabaseRoot.child(key).child("firstsurvey").setValue(Surveyist);
+                                fDatabaseRoot.child(key).child("usersurvey").setValue(Surveyist);
                                 fDatabaseRoot.child(key).child("secondsurvey").setValue(Surveytwolist);
-                                fDatabaseRoot.child(key).child("thirdsurvey").setValue(Surveythreelist);
+                                fDatabaseRoot.child(key).child("surverysts").setValue("1");
+                                List<String> iiirds=new ArrayList<>();
+                                Toast toast = Toast.makeText(getApplicationContext(), "Welcome To ParkMate", Toast.LENGTH_SHORT);
+                                toast.setMargin(50, 50);
+                                toast.show();
+                                pb.setVisibility(View.GONE);
+
+                                startActivity(new Intent(SurveyThree.this,Userwelcome.class));
+
+
 
 
                             }
@@ -166,7 +171,7 @@ public class SurveyThree extends AppCompatActivity {
                             pb.setVisibility(View.GONE);
                         }
                     });
-                  */
+
 
 
                 }

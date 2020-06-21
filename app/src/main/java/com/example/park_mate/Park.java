@@ -1,6 +1,9 @@
 package com.example.park_mate;
 
-public class Park {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Park  {
 
     String parkname,address,imageurl,state,city,country,type;
     public  Park()
@@ -75,5 +78,8 @@ public class Park {
     public void setType(String type) {
         this.type = type;
     }
+
+
+
 
 }

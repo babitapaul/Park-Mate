@@ -8,11 +8,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -54,6 +61,7 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
                     }
                     holder.s.setVisibility(View.VISIBLE);
                     holder.btn.setVisibility(View.VISIBLE);
+                    holder.unfriend.setVisibility(View.VISIBLE);
                 }
                 else
                 {
@@ -66,7 +74,16 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
                     }
                     holder.s.setVisibility(View.VISIBLE);
                     holder.btn.setVisibility(View.VISIBLE);
+                    holder.unfriend.setVisibility(View.VISIBLE);
                 }
+            }
+            else
+            {
+                holder.btn.setVisibility(View.GONE);
+                holder.name.setVisibility(View.GONE);
+                holder.status.setVisibility(View.GONE);
+                holder.s.setVisibility(View.GONE);
+                holder.unfriend.setVisibility(View.GONE);
             }
         }
         else
@@ -75,9 +92,37 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
             holder.name.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
             holder.s.setVisibility(View.GONE);
+            holder.unfriend.setVisibility(View.GONE);
         }
 
+        holder.unfriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference fDatabaseRoot;
+                FirebaseDatabase database;
+                database = FirebaseDatabase.getInstance();
+                fDatabaseRoot = database.getReference("Friend Request");
+                Query query = fDatabaseRoot.orderByChild("requestid").equalTo(friend_requests.get(position).getRequestid());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().removeValue();
+                            Toast.makeText(context, "Friend Request Cancel", Toast.LENGTH_SHORT).show();
 
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                friend_requests.removeAll(friend_requests);
+            }
+        });
 
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +133,13 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("username",holder.name.getText().toString());
                 intent.putExtra("freqid",friend_requests.get(position).getRequestid());
-                intent.putExtra("emailid",friend_requests.get(position).getFromemailid());
+                if(st.getusename().equals(friend_requests.get(position).getFromemailid())) {
+                    intent.putExtra("emailid", friend_requests.get(position).getSenderemailid());
+                }
+                else
+                {
+                    intent.putExtra("emailid", friend_requests.get(position).getFromemailid());
+                }
                 intent.putExtra("usercity",friend_requests.get(position).getCity());
                 intent.putExtra("usergender",friend_requests.get(position).getGender());
                 intent.putExtra("userimageurl",friend_requests.get(position).getFromimageurl());
@@ -115,7 +166,7 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
 
         TextView name,status;
         ImageView userpic;
-        Button btn;
+        Button btn,unfriend;
         CardView s;
 
         public MyviewHolders(@NonNull View itemView) {
@@ -125,6 +176,7 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
 
             userpic = (ImageView) itemView.findViewById(R.id.pic);
             btn = (Button) itemView.findViewById(R.id.viewprofile);
+            unfriend= (Button) itemView.findViewById(R.id.unfriend);
             s=(CardView)itemView.findViewById(R.id.crd);
 
 
@@ -134,3 +186,4 @@ public class Friend_List_adpater extends RecyclerView.Adapter<Friend_List_adpate
 
     }
 }
+

@@ -1,16 +1,31 @@
 package com.example.park_mate;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 
@@ -40,25 +55,25 @@ public class View_User_TimeLine_List_adpater extends RecyclerView.Adapter<View_U
         holder.parkname.setText("Park:"+timelines.get(position).getParkname());
 
 
-       if(timelines.get(position).getUserimageurl().trim().isEmpty()) {
-           Picasso.get().load(R.drawable.userimage).into(holder.userpic);
-       }
-       else
-       {
-           Picasso.get().load(timelines.get(position).getUserimageurl()).into(holder.userpic);
-       }
+        if(timelines.get(position).getUserimageurl().trim().isEmpty()) {
+            Picasso.get().load(R.drawable.userimage).into(holder.userpic);
+        }
+        else
+        {
+            Picasso.get().load(timelines.get(position).getUserimageurl()).into(holder.userpic);
+        }
 
-            Picasso.get().load(timelines.get(position).getParkimageurl()).into(holder.whatpostimage);
+        Picasso.get().load(timelines.get(position).getParkimageurl()).into(holder.whatpostimage);
 
-          holder.btn.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                 /* Intent intent= new Intent(context,CommentRead.class);
-                  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                  intent.putExtra("currentimelinekey",timelines.get(position).getTimelineid());
-                  context.startActivity(intent);*/
-              }
-          });
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context,CommentRead.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("currentimelinekey",timelines.get(position).getTimelineid());
+                context.startActivity(intent);
+            }
+        });
 
 
     }

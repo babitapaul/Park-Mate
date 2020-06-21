@@ -4,14 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.List;
 import java.util.Set;
 
 public class Session {
+
     private SharedPreferences prefs;
 
     public Session(Context cntx) {
         // TODO Auto-generated constructor stub
         prefs = PreferenceManager.getDefaultSharedPreferences(cntx);
+
     }
 
     public void setusename(String Emailid) {
@@ -80,11 +83,11 @@ public class Session {
     }
     public  void setAddress(String name)
     {
-        prefs.edit().putString("Address", name).commit();
+        prefs.edit().putString("Adrs", name).commit();
     }
     public  String getAddress()
     {
-        String Gads = prefs.getString("Address","");
+        String Gads = prefs.getString("Adrs","");
         return Gads ;
     }
 
@@ -125,5 +128,10 @@ public class Session {
     {
         String sts = prefs.getString("Setvisiblity","");
         return sts ;
+    }
+    void clearsession()
+    {
+        prefs.edit().clear().commit();
+
     }
 }

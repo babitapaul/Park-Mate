@@ -2,9 +2,11 @@ package com.example.park_mate;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +34,7 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
 
     Context context;
     ArrayList<Timeline> timelines;
-
+    Session stss;
     public User_TimeLine_List_adpater(Context c, ArrayList<Timeline> u) {
         context = c;
         timelines = u;
@@ -42,10 +50,11 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
     @Override
     public void onBindViewHolder(@NonNull User_TimeLine_List_adpater.MyviewHolders holder, final int position) {
 
+        stss=new Session(context);
         holder.whatpostmsg.setText(timelines.get(position).getPostmessage());
         holder.timepost.setText(timelines.get(position).getTime());
         holder.parkname.setText("Park:"+timelines.get(position).getParkname());
-
+        holder.username.setText("User:"+timelines.get(position).getUsername());
 
         if(timelines.get(position).getUserimageurl().trim().isEmpty()) {
             Picasso.get().load(R.drawable.userimage).into(holder.userpic);
@@ -66,8 +75,14 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
 
             }
         });
-        holder.onClick(position,timelines.get(position).getTime());
-
+        if(timelines.get(position).getEmailid().equals(stss.getusename())) {
+            holder.onClick(position, timelines.get(position).getTime());
+            holder.btn.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.btn.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -77,7 +92,7 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
 
     public class MyviewHolders extends RecyclerView.ViewHolder {
 
-        TextView whatpostmsg, timepost,parkname;
+        TextView whatpostmsg, timepost,parkname,username;
         ImageView userpic,whatpostimage;
         ImageView btn,reply;
 
@@ -86,6 +101,7 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
             whatpostmsg= (TextView) itemView.findViewById(R.id.whatpost);
             timepost= (TextView) itemView.findViewById(R.id.timepost);
             parkname= (TextView) itemView.findViewById(R.id.parkname);
+            username= (TextView) itemView.findViewById(R.id.username);
 
             userpic = (ImageView) itemView.findViewById(R.id.posttimelineimage);
             whatpostimage = (ImageView) itemView.findViewById(R.id.whatpostimage);

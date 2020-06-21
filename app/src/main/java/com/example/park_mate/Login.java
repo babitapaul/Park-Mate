@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Login extends AppCompatActivity {
 
@@ -107,10 +120,9 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             st.setusename(emailid);
-                            // Sign in success, update UI with the signed-in user's information
-                            pgsBar.setVisibility(View.GONE);
-                            startActivity(new Intent(getApplicationContext(),SurveyFirst.class));
 
+                            pgsBar.setVisibility(View.GONE);
+                            startActivity(new Intent(Login.this,SurveyFirst.class).putExtra("token","0"));
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast toast = Toast.makeText(getApplicationContext(),  "Wrong Emaild and Password!", Toast.LENGTH_SHORT);
@@ -126,4 +138,4 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
-    }
+}

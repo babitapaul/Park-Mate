@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +45,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -70,6 +74,7 @@ public class UserTimline_fragment extends Fragment {
     private DatabaseReference mdatabaserefrence;
     private StorageTask mstoragetask;
     ArrayList<Timeline> sts;
+    final ArrayList<String>myfrd=new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +84,7 @@ public class UserTimline_fragment extends Fragment {
 
         pb=(ProgressBar)view.findViewById(R.id.pbloading);
         mysession=new Session(getContext());
-        getActivity().setTitle("Welcome "+mysession.getname());
+        getActivity().setTitle("Welcome To ParkMate");
         database = FirebaseDatabase.getInstance();
         fDatabaseRoot = database.getReference("ParkRecord");
         Parklist=(Spinner)view.findViewById(R.id.parklist);
@@ -242,6 +247,8 @@ public class UserTimline_fragment extends Fragment {
             toast.show();
         }
         else {
+            sts.removeAll(sts);
+            myfrd.removeAll(myfrd);
             pb.setVisibility(View.VISIBLE);
             if (imageuri != null) {
                 final StorageReference filerefrence = mstoragereReference.child(System.currentTimeMillis() + "." + getFileExtension(imageuri));
@@ -268,6 +275,8 @@ public class UserTimline_fragment extends Fragment {
                                 Timeline timeline = new Timeline(uploadid, Parklist.getSelectedItem().toString(), mysession.getname(), mysession.getusename(), mysession.getcity(), mysession.getAddress(), posttimelinemsgs, mydatetime, s.toString(), mysession.getimageurl(), mysession.getmobile());
 
                                 mdatabaserefrence.child(uploadid).setValue(timeline);
+                                myfrd.removeAll(myfrd);
+                                sts.removeAll(sts);
                                 if (mysession.getimageurl().isEmpty()) {
                                     Picasso.get().load(R.drawable.userimage).into(myimage);
                                 } else {
@@ -309,21 +318,57 @@ public class UserTimline_fragment extends Fragment {
     }
     void loaduserTimeline()
     {
+        sts = new ArrayList<Timeline>();
         pb.setVisibility(View.VISIBLE);
-        sts=new ArrayList<Timeline>();
-        reference= FirebaseDatabase.getInstance().getReference("UserTimeline");
-        Query query=reference.orderByChild("emailid").equalTo(mysession.getusename());
-        query.addValueEventListener(new ValueEventListener() {
+        myfrd.removeAll(myfrd);
+        sts.removeAll(sts);
+        // myfrd.add(mysession.getusename());
+        reference= FirebaseDatabase.getInstance().getReference("Friend Request");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
-                    Timeline us=dataSnapshot1.getValue(Timeline.class);
-                    sts.add(us);
+
+
+                    Friend_Request us=dataSnapshot1.getValue(Friend_Request.class);
+                    if(us.getStatus().equals("Approved") && us.getSenderemailid().equals(mysession.getusename()) || us.getFromemailid().equals(mysession.getusename()))
+                    {
+                        myfrd.add(us.getSenderemailid().toString());
+                        myfrd.add(us.getFromemailid().toString());
+                    }
+
+
                 }
-                user_timeLine_list_adpater=new User_TimeLine_List_adpater(getContext(),sts);
-                recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-                recyclerView.setAdapter(user_timeLine_list_adpater);
+                //   int chk=0;
+                for(String jk:myfrd) {
+
+                    System.out.println("my emailid is "+jk);
+                    sts.removeAll(sts);
+                    reference = FirebaseDatabase.getInstance().getReference("UserTimeline");
+                    Query query = reference.orderByChild("emailid").equalTo(jk);
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                Timeline us = dataSnapshot1.getValue(Timeline.class);
+                                sts.add(us);
+                            }
+                            user_timeLine_list_adpater = new User_TimeLine_List_adpater(getContext(), sts);
+                            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+                            recyclerView.setAdapter(user_timeLine_list_adpater);
+                            pb.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                sts.removeAll(sts);
+                myfrd.removeAll(myfrd);
                 pb.setVisibility(View.GONE);
             }
 
@@ -332,5 +377,23 @@ public class UserTimline_fragment extends Fragment {
 
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
 }

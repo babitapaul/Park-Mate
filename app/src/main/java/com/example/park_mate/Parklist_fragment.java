@@ -2,63 +2,86 @@ package com.example.park_mate;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Parklist_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+
 public class Parklist_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Parklist_fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Parklist_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Parklist_fragment newInstance(String param1, String param2) {
-        Parklist_fragment fragment = new Parklist_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    Park_List_adpater park_list_adpater;
+    ArrayList<Park>parks;
+    RecyclerView recyclerView;
+    Session st;
+    ProgressBar pb;
+    DatabaseReference reference;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parklist_fragment, container, false);
+        View view=inflater.inflate(R.layout.fragment_parklist_fragment, container, false);
+        parks=new ArrayList<Park>();
+        recyclerView=(RecyclerView)view.findViewById(R.id.parkmatchlist);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        pb=(ProgressBar)view.findViewById(R.id.pbloading);
+        st=new Session(getContext());
+        getActivity().setTitle("Park List");
+        getmatchingparklist();
+        return view;
+    }
+    void getmatchingparklist() {
+        pb.setVisibility(View.VISIBLE);
+        Set<String> h = st.getparksurvey();
+        for (String g : h) {
+
+            parks = new ArrayList<Park>();
+            reference = FirebaseDatabase.getInstance().getReference("ParkRecord");
+            Query query = reference.orderByChild("type").equalTo(g);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                        Park us = dataSnapshot1.getValue(Park.class);
+                        parks.add(us);
+                        park_list_adpater = new Park_List_adpater(getContext(), parks);
+                        recyclerView.setAdapter(park_list_adpater);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+        if(parks.size()==0)
+        {
+            Toast toast = Toast.makeText(getContext(), "No Park Found According To Your Interest", Toast.LENGTH_SHORT);
+            toast.setMargin(50, 50);
+            toast.show();
+        }
+        pb.setVisibility(View.INVISIBLE);
     }
 }

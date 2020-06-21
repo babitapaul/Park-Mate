@@ -7,58 +7,122 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Privacy#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 public class Privacy extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Privacy() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Privacy.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Privacy newInstance(String param1, String param2) {
-        Privacy fragment = new Privacy();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    TextView user_name;
+    ImageView cpic;
+    Switch btnupdate;
+    private Session j;
+    private DatabaseReference fDatabaseRoot;
+    private FirebaseDatabase database;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_privacy, container, false);
+
+        View root =inflater.inflate(R.layout.fragment_privacy, container, false);
+        getActivity().setTitle("Privacy");
+        user_name = (TextView)root.findViewById(R.id.userid);
+        cpic = (ImageView)root.findViewById(R.id.pic);
+        btnupdate = (Switch)root.findViewById(R.id.switch1);
+        j=new Session(getActivity());
+        user_name.setText(j.getname());
+        database = FirebaseDatabase.getInstance();
+        fDatabaseRoot = database.getReference("users");
+        if (j.getimageurl().trim().isEmpty()) {
+            Picasso.get().load(R.drawable.userimage).into(cpic);
+
+        } else {
+            Picasso.get().load(j.getimageurl()).into(cpic);
+
+        }
+        String sts=j.getvisiblity();
+        if(sts.equalsIgnoreCase("1"))
+        {
+            btnupdate.setChecked(true);
+        }
+        else
+        {
+            btnupdate.setChecked(false);
+        }
+        btnupdate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    final Query query = fDatabaseRoot.orderByChild("emailid").equalTo(j.getusename());
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
+                                String key = appleSnapshot.getKey();
+                                //    update(key);
+                                fDatabaseRoot.child(key).child("status").setValue("1");
+
+
+                            }
+                            Toast toast=Toast.makeText(getActivity(),"Profile Visible Public",Toast.LENGTH_SHORT);
+                            toast.setMargin(50,50);
+                            toast.show();
+                            j.setvisiblity("1");
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // Log.e(TAG, "onCancelled", databaseError.toException());
+
+                        }
+                    });
+
+
+                }
+
+                else {
+
+                    final Query query = fDatabaseRoot.orderByChild("emailid").equalTo(j.getusename());
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
+                                String key = appleSnapshot.getKey();
+                                //    update(key);
+                                fDatabaseRoot.child(key).child("status").setValue("0");
+
+
+                            }
+                            Toast toast=Toast.makeText(getActivity(),"Profile Visible Private",Toast.LENGTH_SHORT);
+                            toast.setMargin(50,50);
+                            toast.show();
+                            j.setvisiblity("0");
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // Log.e(TAG, "onCancelled", databaseError.toException());
+
+                        }
+                    });
+                }
+            }
+        });
+
+        return root;
     }
 }

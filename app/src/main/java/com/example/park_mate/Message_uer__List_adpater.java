@@ -10,8 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,32 +47,32 @@ public class Message_uer__List_adpater extends RecyclerView.Adapter<Message_uer_
     public void onBindViewHolder(@NonNull final Message_uer__List_adpater.MyviewHolders holder, final int position) {
 
 
-                             st=new Session(context);
+        st=new Session(context);
 
-                             if(st.getusename().equals(chatMessages.get(position).getToemailid())) {
-                                 holder.username.setText("Name: " + chatMessages.get(position).getSendername());
-                             }
-                             else
-                             {
-                                 holder.username.setText("Name: " + chatMessages.get(position).getToname());
-                             }
-                          if (chatMessages.get(position).getSenderimageurl().trim().isEmpty())
-                              {
-                                  Picasso.get().load(R.drawable.defultuser).into(holder.userpic);
-                              } else {
-                                  Picasso.get().load(chatMessages.get(position).getSenderimageurl()).into(holder.userpic);
-                              }
+        if(st.getusename().equals(chatMessages.get(position).getToemailid())) {
+            holder.username.setText("Name: " + chatMessages.get(position).getSendername());
+        }
+        else
+        {
+            holder.username.setText("Name: " + chatMessages.get(position).getToname());
+        }
+        if (chatMessages.get(position).getSenderimageurl().trim().isEmpty())
+        {
+            Picasso.get().load(R.drawable.defultuser).into(holder.userpic);
+        } else {
+            Picasso.get().load(chatMessages.get(position).getSenderimageurl()).into(holder.userpic);
+        }
 
-       holder.btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent= new Intent(context, Chat.class);
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context, Chat.class);
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-               intent.putExtra("chatid",chatMessages.get(position).getChatid());
-               context.startActivity(intent);
-           }
-       });
+                intent.putExtra("chatid",chatMessages.get(position).getChatid());
+                context.startActivity(intent);
+            }
+        });
 
 
 

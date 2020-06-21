@@ -3,8 +3,9 @@ package com.example.park_mate;
 import java.util.List;
 
 public class registration {
-    String emailid,username,password,gender,mobileno,address,imageurl,status,aboutme,city;
-    List<String> firstsurvey,secondsurvey,thirdsurvey;
+
+    String emailid,username,password,gender,mobileno,address,imageurl,status,aboutme,city,surverysts;
+    List<String> usersurvey,secondsurvey,thirdsurvey;
     public  registration()
     {
 
@@ -19,7 +20,21 @@ public class registration {
         this.city = city;
     }
 
-    public registration(String city, String emailid, String username, String password, String gender, String mobileno, String address, List<String> firstsurvey, List<String> secondsurvey, List<String>thirdsurvey, String imageurl, String status, String aboutme)
+    public String getSurverysts() {
+        return surverysts;
+    }
+
+    public void setSurverysts(String surverysts) {
+        this.surverysts = surverysts;
+    }
+
+
+
+    public void setUsersurvey(List<String> usersurvey) {
+        this.usersurvey = usersurvey;
+    }
+
+    public registration(String city, String emailid, String username, String password, String gender, String mobileno, String address, List<String> usersurvey, List<String> secondsurvey, List<String>thirdsurvey, String imageurl, String status, String aboutme, String surverysts)
     {
 
         this.emailid=emailid;
@@ -28,7 +43,8 @@ public class registration {
         this.gender=gender;
         this.mobileno=mobileno;
         this.address=address;
-        this.firstsurvey=firstsurvey;
+        this.surverysts=surverysts;
+        this.usersurvey=usersurvey;
         this.secondsurvey=secondsurvey;
         this.thirdsurvey=thirdsurvey;
         this.imageurl=imageurl;
@@ -45,13 +61,10 @@ public class registration {
         this.aboutme = aboutme;
     }
 
-    public List<String> getFirstsurvey() {
-        return firstsurvey;
+    public List<String> getusersurvey() {
+        return usersurvey;
     }
 
-    public void setFirstsurvey(List<String> firstsurvey) {
-        this.firstsurvey = firstsurvey;
-    }
 
     public List<String> getSecondsurvey() {
         return secondsurvey;

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,8 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,18 +22,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class ParkAdd extends AppCompatActivity {
 
@@ -40,7 +48,7 @@ public class ParkAdd extends AppCompatActivity {
     private String Parkname;
     private ImageView mImageview;
     private ProgressBar pgsBar,mprogressbar;
-    private EditText Parktype, ParkCity, ParkCounty, ParkState,Parkaddress;
+    private EditText  Parktype, ParkCity, ParkCounty, ParkState,Parkaddress;
     private Uri imageuri;
     private StorageReference mstoragereReference;
     private DatabaseReference mdatabaserefrence;
@@ -213,4 +221,5 @@ public class ParkAdd extends AppCompatActivity {
             Picasso.get().load(imageuri).into(mImageview);
         }
     }
+
 }
