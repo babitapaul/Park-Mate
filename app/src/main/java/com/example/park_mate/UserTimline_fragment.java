@@ -84,7 +84,7 @@ public class UserTimline_fragment extends Fragment {
 
         pb=(ProgressBar)view.findViewById(R.id.pbloading);
         mysession=new Session(getContext());
-        getActivity().setTitle("Welcome To ParkMate");
+        getActivity().setTitle("Welcome "+mysession.getname().toUpperCase());
         database = FirebaseDatabase.getInstance();
         fDatabaseRoot = database.getReference("ParkRecord");
         Parklist=(Spinner)view.findViewById(R.id.parklist);

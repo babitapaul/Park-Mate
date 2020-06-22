@@ -122,7 +122,7 @@ public class NewUser extends AppCompatActivity {
                         List<String> iinds=new ArrayList<>();
                         List<String> iiirds=new ArrayList<>();
                         if (task.isSuccessful()) {
-                            registration us = new registration(city,emailid,username, password,gender,mobilenb,"",ists,iinds,iiirds,"","1","");
+                            registration us = new registration(city,emailid,username, password,gender,mobilenb,"",ists,iinds,iiirds,"","1","","0");
 
 
                             FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
