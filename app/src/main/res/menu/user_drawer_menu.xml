@@ -19,7 +19,7 @@
     <item
         android:id="@+id/Notification"
         android:icon="@drawable/ic_people_black_24dp"
-        android:title="Notification"
+        android:title="New Friend Requests"
         android:iconTint="@color/colorAccent"/>
     <item
         android:id="@+id/friendlist"
@@ -29,7 +29,7 @@
     <item
         android:id="@+id/pendingfriendlist"
         android:icon="@drawable/ic_people_black_24dp"
-        android:title="Sent Pending Request "
+        android:title="Sent Request Status"
         android:iconTint="@color/colorAccent"/>
     <item
         android:id="@+id/message"

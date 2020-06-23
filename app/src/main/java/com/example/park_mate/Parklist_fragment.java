@@ -64,6 +64,12 @@ public class Parklist_fragment extends Fragment {
                         parks.add(us);
                         park_list_adpater = new Park_List_adpater(getContext(), parks);
                         recyclerView.setAdapter(park_list_adpater);
+                        if(parks.size()==0)
+                        {
+                            Toast toast = Toast.makeText(getContext(), "No Park Found According To Your Interest", Toast.LENGTH_SHORT);
+                            toast.setMargin(50, 50);
+                            toast.show();
+                        }
 
                     }
 
@@ -76,12 +82,7 @@ public class Parklist_fragment extends Fragment {
             });
 
         }
-        if(parks.size()==0)
-        {
-            Toast toast = Toast.makeText(getContext(), "No Park Found According To Your Interest", Toast.LENGTH_SHORT);
-            toast.setMargin(50, 50);
-            toast.show();
-        }
+
         pb.setVisibility(View.INVISIBLE);
     }
 }

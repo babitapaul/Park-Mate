@@ -114,6 +114,7 @@
 
         android:drawableLeft="@drawable/ic_vpn_key_black"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textColorHint="#4E29A8"
         android:textColor="#4E29A8"
         android:textSize="22dp"

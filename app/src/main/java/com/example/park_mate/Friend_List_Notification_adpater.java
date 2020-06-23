@@ -50,7 +50,7 @@ public class Friend_List_Notification_adpater extends RecyclerView.Adapter<Frien
         if(friend_requests.get(position).getStatus().equals("Pending"))
         {
 
-            holder.name.setText("Name: " + friend_requests.get(position).getFromname());
+            holder.name.setText("Name: " + friend_requests.get(position).getSendername());
             holder.status.setText("Status: " + friend_requests.get(position).getStatus());
             holder.s.setVisibility(View.VISIBLE);
             holder.btn.setVisibility(View.VISIBLE);
