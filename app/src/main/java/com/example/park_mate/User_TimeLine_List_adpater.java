@@ -129,7 +129,7 @@ public class User_TimeLine_List_adpater extends RecyclerView.Adapter<User_TimeLi
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
                                 appleSnapshot.getRef().removeValue();
-                                Toast.makeText(context, "TimeLine Posted deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "TimeLine Post deleted", Toast.LENGTH_SHORT).show();
                             }
                             timelines.removeAll(timelines);
 

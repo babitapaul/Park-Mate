@@ -61,10 +61,11 @@ public class Manage_User_TimeLine_List_adpater extends RecyclerView.Adapter<Mana
           holder.btn.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  /*Intent intent= new Intent(context,ManageComment.class);
+                  Intent intent= new Intent(context,ManageComment.class);
                   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                   intent.putExtra("currentimelinekey",timelines.get(position).getTimelineid());
-                  context.startActivity(intent);*/
+                  context.startActivity(intent);
+
               }
           });
           holder.deletetimline.setOnClickListener(new View.OnClickListener() {

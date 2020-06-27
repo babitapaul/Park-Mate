@@ -64,7 +64,6 @@ public class Chat extends AppCompatActivity {
     void getchat()
     {
 
-        chatMessages=new ArrayList<>();
         reference= FirebaseDatabase.getInstance().getReference("ChatHistory");
         Query query=reference.orderByChild("chatid").equalTo(chatid);
         query.addValueEventListener(new ValueEventListener() {
@@ -98,6 +97,7 @@ public class Chat extends AppCompatActivity {
         String commentd=databaserefrence.push().getKey();
         databaserefrence.child(commentd).setValue(chatHistory);
         writechat.setText(null);
+        chatMessages.removeAll(chatMessages);
         //  pb.setVisibility(View.GONE);
     }
 }
