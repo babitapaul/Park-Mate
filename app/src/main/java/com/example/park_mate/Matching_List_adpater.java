@@ -159,6 +159,18 @@ public class Matching_List_adpater extends RecyclerView.Adapter<Matching_List_ad
 
                     }
 
+//visibility gone krni
+
+                    else
+                    {
+                        holder.name.setVisibility(View.GONE);
+                        holder.city.setVisibility(View.GONE);
+
+                        holder.gender.setVisibility(View.GONE);
+                        holder.btn.setVisibility(View.GONE);
+                        holder.userpic.setVisibility(View.GONE);
+                        holder.crd.setVisibility(View.GONE);
+                    }
 
                 }
 

@@ -1,9 +1,11 @@
 package com.example.park_mate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Chat_Adapter extends RecyclerView.Adapter<Chat_Adapter.MyviewHolders> {
 
@@ -44,18 +48,18 @@ public class Chat_Adapter extends RecyclerView.Adapter<Chat_Adapter.MyviewHolder
     @Override
     public void onBindViewHolder(@NonNull final Chat_Adapter.MyviewHolders holder, final int position) {
 
-                st=new Session(context);
-                                      holder.chtmsg.setText(chatMessages.get(position).getMessage());
-                                      holder.time.setText(chatMessages.get(position).getTime());
-                                      holder.name.setText(chatMessages.get(position).getChatpersoname()+" : ");
-                                      if(st.getusename().equals(chatMessages.get(position).getChatemailid()))
-                                      {
-                                          holder.deletechat.setVisibility(View.VISIBLE);
-                                      }
-                                      else
-                                      {
-                                          holder.deletechat.setVisibility(View.GONE);
-                                      }
+        st=new Session(context);
+        holder.chtmsg.setText(chatMessages.get(position).getMessage());
+        holder.time.setText(chatMessages.get(position).getTime());
+        holder.name.setText(chatMessages.get(position).getChatpersoname()+" : ");
+        if(st.getusename().equals(chatMessages.get(position).getChatemailid()))
+        {
+            holder.deletechat.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.deletechat.setVisibility(View.GONE);
+        }
      /*   if(chatMessages.get(position).getChatpersonimage().isEmpty()) {
 
         }

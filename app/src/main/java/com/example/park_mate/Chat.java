@@ -52,7 +52,7 @@ public class Chat extends AppCompatActivity {
         chatid=intent.getStringExtra("chatid");
         writechat=(EditText)findViewById(R.id.writechatmsg);
         sendchat=(Button)findViewById(R.id.sendchat);
-
+        chatMessages=new ArrayList<>();
         getchat();
         sendchat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +64,13 @@ public class Chat extends AppCompatActivity {
     void getchat()
     {
 
+
         reference= FirebaseDatabase.getInstance().getReference("ChatHistory");
         Query query=reference.orderByChild("chatid").equalTo(chatid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                chatMessages.clear();
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
                     ChatHistory us=dataSnapshot1.getValue(ChatHistory.class);
                     chatMessages.add(us);
@@ -78,6 +79,7 @@ public class Chat extends AppCompatActivity {
                 chat_adapter=new Chat_Adapter(getApplicationContext(),chatMessages);
                 recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
                 recyclerView.setAdapter(chat_adapter);
+
                 // pb.setVisibility(View.GONE);
             }
 

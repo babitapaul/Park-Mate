@@ -73,12 +73,16 @@ public class MatchList extends Fragment {
 
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         //  System.out.println("value is "+dataSnapshot1.getChildren().toString());
+
                         System.out.println("hghghgh"+dataSnapshot1);
                         registration us = dataSnapshot1.getValue(registration.class);
+                        System.out.println("test-------------------------------"+us.getusersurvey());
+                       /*  for(String Myfilter:filter) {
+                             if(Myfilter.equals(us.get))
+
+
+                         } */
                         registrations.add(us);
-
-
-
                         matching_list_adpater=new Matching_List_adpater(getContext(),registrations);
 
                         recyclerView.setAdapter(matching_list_adpater);

@@ -327,7 +327,7 @@ public class UserTimline_fragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                myfrd.clear();
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
 
 
@@ -350,7 +350,7 @@ public class UserTimline_fragment extends Fragment {
                     query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                            sts.clear();
                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                 Timeline us = dataSnapshot1.getValue(Timeline.class);
                                 sts.add(us);
